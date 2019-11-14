@@ -25,13 +25,14 @@
   </xacro:thruster_macro-->
 
     <!-- Instantiate fins, if necessary -->
-    <!--xacro:fin_macro namespace="${namespace}" fin_id="0">
-      <origin xyz="0 0 0" rpy="0 0 0" />
+    <xacro:fin_macro namespace="${namespace}" fin_id="0" mesh_filename="${fin_mesh_file}">
+      <origin xyz="-2.75873 0.757596 0.020071" rpy="${0.5 * pi} 0 0" />
     </xacro:fin_macro>
-    <xacro:fin_macro namespace="${namespace}" fin_id="1">
-      <origin xyz="0 0 0" rpy="0 0 0" />
+
+    <xacro:fin_macro namespace="${namespace}" fin_id="1" mesh_filename="${fin_mesh_file}">
+      <origin xyz="-2.75873 -0.757596 0.020071" rpy="${0.5 * pi} 0 0" />
     </xacro:fin_macro>
-    <xacro:fin_macro namespace="${namespace}" fin_id="2">
+    <!--xacro:fin_macro namespace="${namespace}" fin_id="2">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:fin_macro>
     <xacro:fin_macro namespace="${namespace}" fin_id="3">

@@ -196,24 +196,27 @@
   <!-- A separate mesh for the fin should be stored in the meshes folder -->
   <xacro:property name="fin_mesh_file" value="file://$(find hrov_description)/meshes/fin.dae"/>
 
-  <!-- Fin joint limits  -->
-  <xacro:property name="fin_min_joint_limit" value="${0.0 * d2r}"/>
-  <xacro:property name="fin_max_joint_limit" value="${0.0 * d2r}"/>
 
-  <xacro:macro name="fin_macro" params="namespace fin_id *origin mesh_filename">
-    <xacro:fin_quadratic_macro
-      namespace="${namespace}"
-      parent_link="${namespace}/base_link"
-      fin_id="${fin_id}"
-      min_joint_limit="${-90.0 * d2r}"
-      max_joint_limit="${90.0 * d2r}"
-      mesh_filename="${mesh_filename}"
-      fin_dynamics_time_constant="0.2"
-      lift_constant="${0.5 * fin_rho * fin_area * fin_lift_coefficient}"
-      drag_constant="${0.5 * fin_rho * fin_area * fin_drag_coefficient}"
-      current_velocity_topic="current_velocity">
-      <xacro:insert_block name="origin"/>
-    </xacro:fin_quadratic_macro>
-</xacro:macro>
+    <!-- Fin properties -->
+    <xacro:property name="fin_area" value="0.0064"/>
+    <xacro:property name="fin_rho" value="1028"/>
+    <xacro:property name="fin_lift_coefficient" value="3.0"/>
+    <xacro:property name="fin_drag_coefficient" value="1.98"/>
+
+    <xacro:macro name="fin_macro" params="namespace fin_id *origin mesh_filename">
+        <xacro:fin_quadratic_macro
+          namespace="${namespace}"
+          parent_link="${namespace}/base_link"
+          fin_id="${fin_id}"
+          min_joint_limit="${-90.0 * d2r}"
+          max_joint_limit="${90.0 * d2r}"
+          mesh_filename="${mesh_filename}"
+          fin_dynamics_time_constant="0.2"
+          lift_constant="${0.5 * fin_rho * fin_area * fin_lift_coefficient}"
+          drag_constant="${0.5 * fin_rho * fin_area * fin_drag_coefficient}"
+          current_velocity_topic="current_velocity">
+          <xacro:insert_block name="origin"/>
+        </xacro:fin_quadratic_macro>
+    </xacro:macro>
 
 </robot>
